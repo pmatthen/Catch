@@ -11,14 +11,11 @@
 
 @interface MainScreenViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIButton *findFriendsButton;
-@property (strong, nonatomic) IBOutlet UIButton *throwBallButton;
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) NSString *fBUsername;
-@property (strong, nonatomic) NSNumber *fBID;
+@property (strong, nonatomic) NSString *fBID;
+@property (strong, nonatomic) PFObject *myUser;
 
-- (IBAction)findFriendsButtonPressed:(id)sender;
-- (IBAction)throwBallButtonPressed:(id)sender;
-- (IBAction)backButtonPressed:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
 
 @end

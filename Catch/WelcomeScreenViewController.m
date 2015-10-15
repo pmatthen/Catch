@@ -4,6 +4,11 @@
 //
 //  Created by Poulose Matthen on 04/06/15.
 //  Copyright (c) 2015 Zettanode. All rights reserved.
+//  Username: manmohansingh26932
+//  Password: qpwoei123
+//
+//  Username: pranabmukherjee111235
+//  Password: qpwoei123
 //
 
 #import "WelcomeScreenViewController.h"
@@ -15,15 +20,33 @@
 
 @property CLLocation *userLocation;
 @property __block NSString *fBUsername;
-@property __block NSNumber *fBID;
+@property __block NSString *fBID;
+@property BOOL is35;
+@property (nonatomic, strong) PFObject *myUser;
+@property UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
 @implementation WelcomeScreenViewController
-@synthesize locationManager, userLocation, fBUsername, fBID;
+@synthesize locationManager, userLocation, fBUsername, fBID, is35, initializingView, activityIndicatorView, myUser, tapGestureRecognizer;
+
+int counter = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    is35 = NO;
+    
+    CGRect bounds = self.view.bounds;
+    CGFloat height = bounds.size.height;
+    
+    if (height == 480) {
+        is35 = YES;
+    }
+    
+    [activityIndicatorView startAnimating];
+    [initializingView setHidden:FALSE];
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -37,34 +60,48 @@
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
     loginButton.center = CGPointMake(160, 500);
+    if (is35) {
+        loginButton.center = CGPointMake(160, 423);
+    }
+    [loginButton setDelegate:self];
     [self.view addSubview:loginButton];
     
-    __block NSString *username;
-    __block NSNumber *facebookID;
-    
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"me"
-                                  parameters:nil
-                                  HTTPMethod:@"GET"];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                          id result,
-                                          NSError *error) {
-        if (!error) {
-            username = [result objectForKey:@"name"];
-            facebookID = [NSNumber numberWithLongLong:[[result objectForKey:@"id"] longLongValue]];
+    if ([FBSDKAccessToken currentAccessToken]) {
+        __block NSString *username;
+        __block NSString *facebookID;
+        
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:@"me"
+                                      parameters:nil
+                                      HTTPMethod:@"GET"];
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+            if (!error) {
+                facebookID = [result objectForKey:@"id"];
+                
+                username = [result objectForKey:@"name"];
+                
+                fBID = facebookID;
+                fBUsername = username;
+            } else {
+                NSString *errorString = [error userInfo][@"error"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }
             
-            fBID = facebookID;
-            fBUsername = username;
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
-        }
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-        
-        [self.view addGestureRecognizer:tapGestureRecognizer];
-    }];
+            tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+            
+            [self.view addGestureRecognizer:tapGestureRecognizer];
+            
+            [activityIndicatorView stopAnimating];
+            [initializingView setHidden:TRUE];
+        }];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    tapGestureRecognizer.enabled = YES;
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -77,15 +114,25 @@
     }
 }
 
-- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer {
-    __block BOOL userSignedUp = NO;
-    __block PFObject *myUser = [PFObject objectWithClassName:@"User"];
+- (void)  loginButton:  (FBSDKLoginButton *)loginButton
+didCompleteWithResult:  (FBSDKLoginManagerLoginResult *)result
+                error:  (NSError *)error{
     
+    NSLog(@"facebook login button test");
+    
+    
+}
+
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer {
+    recognizer.enabled = NO;
     PFQuery *query = [PFQuery queryWithClassName:@"User"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        BOOL userSignedUp = NO;
+        myUser = [PFObject objectWithClassName:@"User"];
+        
         if (!error) {
             for (PFObject *user in objects) {
-                if (user[@"facebookID"] == fBID) {
+                if ([fBID isEqualToString:user[@"facebookID"]]) {
                     myUser = user;
                     NSLog(@"User Signed Up Already");
                     userSignedUp = YES;
@@ -95,8 +142,6 @@
             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
                 if (!error) {
                     if (userSignedUp) {
-                        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"friend_selected_to_throw_ball_to"];
-                        
                         // REMOVE THIS WHEN RECIEVING BALL CODE IS WRITTEN
                         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"user_ball_thrown"];
                         // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -107,7 +152,6 @@
                         
                         [self performSegueWithIdentifier:@"MainScreenSegue" sender:self];
                     } else {
-                        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"friend_selected_to_throw_ball_to"];
                         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"user_ball_thrown"];
                         
                         [myUser setObject:geoPoint forKey:@"location"];
@@ -134,6 +178,7 @@
         
         myMainScreenViewController.fBID = fBID;
         myMainScreenViewController.fBUsername = fBUsername;
+        myMainScreenViewController.myUser = myUser;
     }
 }
 
@@ -145,6 +190,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     userLocation = [locations lastObject];
+    
+    NSLog(@"userlocation #%i = %@", counter, userLocation);
+    counter++;
 }
 
 @end

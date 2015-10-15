@@ -27,6 +27,13 @@
     [Parse setApplicationId:@"2VrzoMkzWVCPfrymMp4jEULLvV4eYFcc2OX7PpL4"
                   clientKey:@"gaF5pfokz9A4msDp2thCBCpt3urZBCK10TCce3Dd"];
     
+    UIStoryboard *storyboard = [self grabStoryboard];
+    
+    // show the storyboard
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
+    
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -63,6 +70,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (UIStoryboard *)grabStoryboard {
+    
+    UIStoryboard *storyboard;
+    
+    // detect the height of our screen
+    int height = [UIScreen mainScreen].bounds.size.height;
+    
+    if (height == 480) {
+        storyboard = [UIStoryboard storyboardWithName:@"35StoryBoard" bundle:nil];
+        NSLog(@"Device has a 3.5inch Display.");
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        NSLog(@"Device has a 4inch Display.");
+    }
+    
+    return storyboard;
 }
 
 @end

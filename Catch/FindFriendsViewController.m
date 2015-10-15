@@ -51,13 +51,18 @@
                                           NSError *error) {
         if (!error) {
             NSArray *data = [result objectForKey:@"data"];
-            NSDictionary *dataIndex = [data firstObject];
+            NSDictionary *dataIndex = [[NSDictionary alloc] init];
+            
+            for (int i = 0; i < [data count]; i++) {
+                dataIndex = [data objectAtIndex:i];
+                [facebookFriendsNameArray addObject:[dataIndex objectForKey:@"name"]];
+                [facebookFriendsIDArray addObject:[dataIndex objectForKey:@"id"]];
+            }
 
-            [facebookFriendsNameArray addObject:[dataIndex objectForKey:@"name"]];
-            [facebookFriendsIDArray addObject:[dataIndex objectForKey:@"id"]];
         } else {
             NSLog(@"error = %@", error);
         }
+        
         [currentFriendsTableView reloadData];
     }];
 }
@@ -77,8 +82,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [detailsArray addObject:[facebookFriendsNameArray objectAtIndex:indexPath.row]];
     [detailsArray addObject:[facebookFriendsIDArray objectAtIndex:indexPath.row]];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"friend_selected_to_throw_ball_to"];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

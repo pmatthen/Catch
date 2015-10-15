@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B124F6B21BAAA22A004CE7DB /* AfterThrowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */; };
 		B13692431B1FF5FD004616F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692421B1FF5FD004616F2 /* main.m */; };
 		B13692461B1FF5FD004616F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692451B1FF5FD004616F2 /* AppDelegate.m */; };
 		B13692491B1FF5FD004616F2 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692481B1FF5FD004616F2 /* WelcomeScreenViewController.m */; };
@@ -18,6 +19,7 @@
 		B136926A1B202345004616F2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13692691B202345004616F2 /* CoreMotion.framework */; };
 		B13CDBD01B4E954900AE0502 /* info.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CDBCF1B4E954900AE0502 /* info.jpg */; };
 		B13CDBD31B4E959500AE0502 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13CDBD21B4E959500AE0502 /* InfoViewController.m */; };
+		B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */; };
 		B17C69F41B314A2800C204D4 /* FindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */; };
 		B19B01681B32A1DA00F5C1AD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19B01651B32A1DA00F5C1AD /* FBSDKCoreKit.framework */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B124F6B01BAAA22A004CE7DB /* AfterThrowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterThrowingViewController.h; sourceTree = "<group>"; };
+		B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterThrowingViewController.m; sourceTree = "<group>"; };
 		B136923D1B1FF5FD004616F2 /* Catch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13692411B1FF5FD004616F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B13692421B1FF5FD004616F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 		B13CDBCF1B4E954900AE0502 /* info.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = info.jpg; path = "../../../Desktop/spliced screens/info.jpg"; sourceTree = "<group>"; };
 		B13CDBD11B4E959500AE0502 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B13CDBD21B4E959500AE0502 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 35StoryBoard.storyboard; sourceTree = "<group>"; };
 		B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1_welcomescreen.jpg; path = "../../../Desktop/spliced screens/1_welcomescreen.jpg"; sourceTree = "<group>"; };
 		B17C69F11B3143D800C204D4 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		B17C69F21B314A2700C204D4 /* FindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsViewController.h; sourceTree = "<group>"; };
@@ -158,7 +163,10 @@
 				B13CDBD21B4E959500AE0502 /* InfoViewController.m */,
 				B17C69F21B314A2700C204D4 /* FindFriendsViewController.h */,
 				B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */,
+				B124F6B01BAAA22A004CE7DB /* AfterThrowingViewController.h */,
+				B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */,
 				B136924A1B1FF5FD004616F2 /* Main.storyboard */,
+				B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */,
 				B165B8E91B4671500058DB2E /* Images */,
 				B136924D1B1FF5FD004616F2 /* Images.xcassets */,
 				B136924F1B1FF5FD004616F2 /* LaunchScreen.xib */,
@@ -270,7 +278,7 @@
 		B13692351B1FF5FD004616F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Zettanode;
 				TargetAttributes = {
 					B136923C1B1FF5FD004616F2 = {
@@ -312,6 +320,7 @@
 				B13692511B1FF5FD004616F2 /* LaunchScreen.xib in Resources */,
 				B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */,
 				B136924E1B1FF5FD004616F2 /* Images.xcassets in Resources */,
+				B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B124F6B21BAAA22A004CE7DB /* AfterThrowingViewController.m in Sources */,
 				B13692491B1FF5FD004616F2 /* WelcomeScreenViewController.m in Sources */,
 				B13692681B1FF7C3004616F2 /* MainScreenViewController.m in Sources */,
 				B13CDBD31B4E959500AE0502 /* InfoViewController.m in Sources */,
@@ -397,6 +407,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,15 +472,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/Vanaja/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Catch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -478,15 +494,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/Vanaja/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Catch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -504,6 +525,7 @@
 				);
 				INFOPLIST_FILE = CatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catch.app/Catch";
 			};
@@ -519,6 +541,7 @@
 				);
 				INFOPLIST_FILE = CatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catch.app/Catch";
 			};
