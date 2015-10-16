@@ -16,7 +16,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface WelcomeScreenViewController () <UIGestureRecognizerDelegate, CLLocationManagerDelegate>
+@interface WelcomeScreenViewController () <UIGestureRecognizerDelegate, CLLocationManagerDelegate, FBSDKLoginButtonDelegate>
 
 @property CLLocation *userLocation;
 @property __block NSString *fBUsername;
@@ -44,9 +44,6 @@ int counter = 0;
         is35 = YES;
     }
     
-    [activityIndicatorView startAnimating];
-    [initializingView setHidden:FALSE];
-    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -69,6 +66,9 @@ int counter = 0;
     if ([FBSDKAccessToken currentAccessToken]) {
         __block NSString *username;
         __block NSString *facebookID;
+        
+        [activityIndicatorView startAnimating];
+        [initializingView setHidden:FALSE];
         
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:@"me"
@@ -118,9 +118,43 @@ int counter = 0;
 didCompleteWithResult:  (FBSDKLoginManagerLoginResult *)result
                 error:  (NSError *)error{
     
-    NSLog(@"facebook login button test");
+    [activityIndicatorView startAnimating];
+    [initializingView setHidden:FALSE];
     
+    __block NSString *username;
+    __block NSString *facebookID;
     
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"me"
+                                  parameters:nil
+                                  HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                          id result,
+                                          NSError *error) {
+        if (!error) {
+            facebookID = [result objectForKey:@"id"];
+            
+            username = [result objectForKey:@"name"];
+            
+            fBID = facebookID;
+            fBUsername = username;
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
+        
+        tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+        
+        [self.view addGestureRecognizer:tapGestureRecognizer];
+        
+        [activityIndicatorView stopAnimating];
+        [initializingView setHidden:TRUE];
+    }];
+}
+
+-(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    NSLog(@"Logged Out");
 }
 
 - (void) handleTapFrom: (UITapGestureRecognizer *)recognizer {
@@ -142,10 +176,6 @@ didCompleteWithResult:  (FBSDKLoginManagerLoginResult *)result
             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
                 if (!error) {
                     if (userSignedUp) {
-                        // REMOVE THIS WHEN RECIEVING BALL CODE IS WRITTEN
-                        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"user_ball_thrown"];
-                        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        
                         [myUser setObject:geoPoint forKey:@"location"];
                         [myUser saveInBackground];
                         [locationManager stopUpdatingLocation];

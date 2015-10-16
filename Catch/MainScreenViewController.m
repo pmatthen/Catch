@@ -15,7 +15,6 @@
 @interface MainScreenViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) CMMotionManager * motionManager;
-@property (nonatomic, strong) UIView * ball;
 @property (nonatomic, strong) NSMutableArray *toFBdetailsArray;
 @property BOOL is35;
 
@@ -26,11 +25,12 @@
 @property int currentPage;
 @property int previousPage;
 @property float startingX;
+@property BOOL userBallStateChanged;
 
 @end
 
 @implementation MainScreenViewController
-@synthesize fBUsername, fBID, toFBdetailsArray, myUser, is35, tempActivityArray, activityArray, isBuildActivityStarted, isViewBuilt, myScrollView, currentPage, previousPage, startingX;
+@synthesize fBUsername, fBID, toFBdetailsArray, myUser, is35, tempActivityArray, activityArray, isBuildActivityStarted, isViewBuilt, myScrollView, currentPage, previousPage, startingX, userBallStateChanged;
 
 float X = 0;
 float Y = 0;
@@ -42,6 +42,7 @@ float R = 300;
     is35 = NO;
     isViewBuilt = NO;
     isBuildActivityStarted = NO;
+    userBallStateChanged = NO;
     
     CGRect bounds = self.view.bounds;
     CGFloat height = bounds.size.height;
@@ -74,7 +75,7 @@ float R = 300;
         CGFloat width = self.view.frame.size.width * [activityArray count];
         myScrollView.contentSize = CGSizeMake(width, myScrollView.frame.size.height);
         [myScrollView setContentOffset:CGPointMake(startingX, self.view.frame.size.height)];
-        [self pageLayout:currentPage];
+        [self resetScrollView];
     } else {
         [self buildActivityDictionary];
     }
@@ -90,17 +91,17 @@ float R = 300;
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    if(self.motionManager != nil){
-        
-        // TODO: 2.3
-        
-        // 2.3 Stop updating the motionManager
-        [self.motionManager stopDeviceMotionUpdates];
-        
-        // 2.3 Set the ivar "motionManager" to nil
-        self.motionManager = nil;
-        
-    }
+//    if(self.motionManager != nil){
+//        
+//        // TODO: 2.3
+//        
+//        // 2.3 Stop updating the motionManager
+//        [self.motionManager stopDeviceMotionUpdates];
+//        
+//        // 2.3 Set the ivar "motionManager" to nil
+//        self.motionManager = nil;
+//        
+//    }
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -147,13 +148,14 @@ float R = 300;
 
 -(void)pageLayout:(int)page
 {
-    
-    if (activityArray[page]) {
-        [self drawPages:page];
-    }
-    
-    if (((page + 1) < [activityArray count])) {
-        [self drawPages:(page + 1)];
+    if (isViewBuilt) {
+        if (activityArray[page]) {
+            [self drawPages:page];
+        }
+        
+        if (((page + 1) < [activityArray count])) {
+            [self drawPages:(page + 1)];
+        }
     }
 }
 
@@ -164,42 +166,77 @@ float R = 300;
     activity = activityArray[sub];
     
     if (sub == 0) {
+        for (UIView *myView in myScrollView.subviews) {
+            if (myView.tag == 50000) {
+                [myView removeFromSuperview];
+            }
+        }
+        
         // Code for User Ball
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"user_ball_thrown"]) {
             // Code for when User Ball has been thrown
-            NSDictionary *tempUserDictionary = activityArray[sub];
-            if ([tempUserDictionary[@"arrived"]  isEqual: @YES]) {
-                //Code for when User Ball has been thrown and has been returned
-            } else {
-                // Code for when User Ball has been thrown and has not been returned
+            UILabel *noBallLabel = [[UILabel alloc] init];
+            noBallLabel.text = @"No Ball";
+            noBallLabel.font = [UIFont systemFontOfSize:20];
+            noBallLabel.textColor = [UIColor redColor];
+            [noBallLabel sizeToFit];
+            float yValue = 250;
+            if (is35) {
+                yValue = 211;
             }
+            noBallLabel.frame = CGRectMake(((self.view.frame.size.width - noBallLabel.frame.size.width)/2), yValue, noBallLabel.frame.size.width, noBallLabel.frame.size.height);
+            noBallLabel.tag = 50000;
+            [myScrollView addSubview:noBallLabel];
         } else {
             // Code for when User Ball has not been thrown
             if ([toFBdetailsArray count] > 0) {
                 // Code for when User Ball has not been thrown and Friend has been selected
+                [self initBall:sub];
             } else {
                 // Code for when User Ball has not been thrown and Friend has not been selected
+                UIButton *selectFriendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                [selectFriendButton addTarget:self
+                           action:@selector(findFriends)
+                 forControlEvents:UIControlEventTouchUpInside];
+                [selectFriendButton setTitle:@"Find a friend to throw your ball to." forState:UIControlStateNormal];
+                selectFriendButton.backgroundColor = [UIColor purpleColor];
+                selectFriendButton.titleLabel.font = [UIFont systemFontOfSize:20];
+                [selectFriendButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                selectFriendButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+                selectFriendButton.titleLabel.numberOfLines = 0;
+                selectFriendButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                float yValue = 488;
+                if (is35) {
+                    yValue = 412;
+                }
+                selectFriendButton.frame = CGRectMake(0, yValue, 320, (self.view.frame.size.height - yValue));
+                selectFriendButton.tag = 50000;
+                [myScrollView bringSubviewToFront:selectFriendButton];
+                [myScrollView addSubview:selectFriendButton];
+                
+                [self initBall:sub];
             }
         }
     } else {
         // Code for Friend Ball
+        [self initBall:sub];
     }
     
-    UIView *myView = [[UIView alloc] init];
-    myView.contentMode = UIViewContentModeScaleToFill;
-    myView.backgroundColor = [UIColor redColor];
-    myView.frame = CGRectMake((self.view.frame.size.width * sub), 0, self.view.frame.size.width, myScrollView.frame.size.height);
-    myView.tag = sub + 1;
+    PFObject *fromUser = activity[@"from"];
+    
     
     UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.font = [UIFont systemFontOfSize:18];
-    myLabel.textColor = [UIColor whiteColor];
-    myLabel.text = [NSString stringWithFormat:@"%i", (sub +1)];
-    myLabel.frame = CGRectMake(180, 284, 100, 100);
+    myLabel.font = [UIFont systemFontOfSize:20];
+    myLabel.textColor = [UIColor blackColor];
+    myLabel.text = fromUser[@"username"];
     [myLabel sizeToFit];
+    float yValue = 450;
+    if (is35) {
+        yValue = 380;
+    }
+    myLabel.frame = CGRectMake((((self.view.frame.size.width - myLabel.frame.size.width)/2) + (sub * self.view.frame.size.width)), yValue, myLabel.frame.size.width, myLabel.frame.size.height);
 
-    [myView addSubview:myLabel];
-    [myScrollView addSubview:myView];
+    [myScrollView addSubview:myLabel];
 }
 
 -(void)swipePhoto:(int)subViewToDelete andAdd:(int)subViewToAdd
@@ -244,7 +281,9 @@ float R = 300;
     [userActivityQuery whereKey:@"FromFBID" matchesRegex:fBID];
     [userActivityQuery findObjectsInBackgroundWithBlock:^(NSArray *activityObjects, NSError *error1) {
         if (!error1) {
-            userActivity = [activityObjects firstObject];
+            if ([activityObjects count] > 0) {
+                userActivity = [activityObjects firstObject];
+            }
             NSLog(@"1. userActivity = %@", userActivity);
             
             if ((userActivity[@"FromFBID"] != NULL) && (userActivity[@"BeingReturned"] == [NSNumber numberWithBool:TRUE])) {
@@ -275,21 +314,26 @@ float R = 300;
                             [userDictionary setObject:userActivity forKey:@"activity"];
                             [userDictionary setObject:@YES forKey:@"arrived"];
                             [userDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
+                            [userDictionary setObject:myUser forKey:@"from"];
+                            [userDictionary setObject:myFriend forKey:@"to"];
                             
                             NSLog(@"useractivity = %@", userActivity);
                             NSLog(@"secondsForBallToTravel = %f", secondsForBallToTravel);
-                            NSLog(@"Uncomment code to delete returned ball object");
-                            //                    [userActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            //                        if (succeeded && !error) {
-                            //                            NSLog(@"Object deleted from Parse");
-                            //                        } else {
-                            //                            NSLog(@"error: %@", error);
-                            //                        }
-                            //                    }];
+                            [userActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                if (succeeded && !error) {
+                                    NSLog(@"Object deleted from Parse");
+                                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"user_ball_thrown"];
+                                    userBallStateChanged = YES;
+                                } else {
+                                    NSLog(@"error: %@", error);
+                                }
+                            }];
                         } else {
                             [userDictionary setObject:userActivity forKey:@"activity"];
                             [userDictionary setObject:@NO forKey:@"arrived"];
                             [userDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
+                            [userDictionary setObject:myUser forKey:@"from"];
+                            [userDictionary setObject:myFriend forKey:@"to"];
                         }
                     } else {
                         NSLog(@"error2");
@@ -301,6 +345,8 @@ float R = 300;
                 [userDictionary setObject:userActivity forKey:@"activity"];
                 [userDictionary setObject:@NO forKey:@"arrived"];
                 [userDictionary setObject:@10 forKey:@"timeTillArrival"];
+                [userDictionary setObject:myUser forKey:@"from"];
+                [userDictionary setObject:myUser forKey:@"to"];
             }
             
             PFQuery *friendActivityQuery = [PFQuery queryWithClassName:@"Activity"];
@@ -312,62 +358,70 @@ float R = 300;
                     remainingActivities = [NSMutableSet setWithArray:activityObjects];
                     NSLog(@"3. activityObjects = %@", activityObjects);
                     
-                    PFQuery *friendQuery = [PFQuery queryWithClassName:@"User"];
-                    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *friendObjects, NSError *error4) {
-                        if (!error4) {
-                            NSLog(@"4. friendObjects = %@", friendObjects);
-                            for (PFObject *activity in activityObjects) {
-                                NSMutableDictionary *friendDictionary = [NSMutableDictionary new];
-                                
-                                friendActivity = activity;
-                                for (PFObject *friend in friendObjects) {
-                                    if ([friend[@"facebookID"] isEqualToString:friendActivity[@"FromFBID"]]) {
-                                        myFriend = friend;
+                    if ([activityObjects count] > 0) {
+                        PFQuery *friendQuery = [PFQuery queryWithClassName:@"User"];
+                        [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *friendObjects, NSError *error4) {
+                            if (!error4) {
+                                NSLog(@"4. friendObjects = %@", friendObjects);
+                                for (PFObject *activity in activityObjects) {
+                                    NSMutableDictionary *friendDictionary = [NSMutableDictionary new];
+                                    
+                                    friendActivity = activity;
+                                    for (PFObject *friend in friendObjects) {
+                                        if ([friend[@"facebookID"] isEqualToString:friendActivity[@"FromFBID"]]) {
+                                            myFriend = friend;
+                                        }
+                                    }
+                                    
+                                    PFGeoPoint *myUserGeoPoint = myUser[@"location"];
+                                    PFGeoPoint *myFriendGeoPoint = myFriend[@"location"];
+                                    
+                                    CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:myUserGeoPoint.latitude longitude:myUserGeoPoint.longitude];
+                                    CLLocation *friendsLocation = [[CLLocation alloc] initWithLatitude:myFriendGeoPoint.latitude longitude:myFriendGeoPoint.longitude];
+                                    
+                                    CLLocationDistance distance = [userLocation distanceFromLocation:friendsLocation];
+                                    double secondsForBallToTravel = distance/(3600/500);
+                                    NSNumber *timeTillArrival = [NSNumber numberWithDouble:(secondsForBallToTravel - [[NSDate date] timeIntervalSinceDate:friendActivity.createdAt])];
+                                    
+                                    // If friends ball has arrived, ???
+                                    if (secondsForBallToTravel < [[NSDate date] timeIntervalSinceDate:friendActivity.createdAt]) {
+                                        [friendDictionary setObject:friendActivity forKey:@"activity"];
+                                        [friendDictionary setObject:@YES forKey:@"arrived"];
+                                        [friendDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
+                                        [friendDictionary setObject:myFriend forKey:@"from"];
+                                        [friendDictionary setObject:myUser forKey:@"to"];
+                                        [friendsActivityArray addObject:friendDictionary];
+                                    } else {
+                                        [friendDictionary setObject:friendActivity forKey:@"activity"];
+                                        [friendDictionary setObject:@NO forKey:@"arrived"];
+                                        [friendDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
+                                        [friendDictionary setObject:myFriend forKey:@"from"];
+                                        [friendDictionary setObject:myUser forKey:@"to"];
+                                        [friendsActivityArray addObject:friendDictionary];
+                                    }
+                                    [remainingActivities removeObject:friendActivity];
+                                    if ([remainingActivities count] == 0) {
+                                        
+                                        sortedFriendsActivityArray = [friendsActivityArray sortedArrayUsingComparator:^NSComparisonResult(NSMutableDictionary *a, NSMutableDictionary *b) {
+                                            NSNumber *first = a[@"timeTillArrival"];
+                                            NSNumber *second = b[@"timeTillArrival"];
+                                            
+                                            return [second compare:first];
+                                        }];
+                                        
+                                        NSLog(@"buildActivityDictionary method finished");
+                                        dispatch_group_leave(taskGroup);
                                     }
                                 }
-                                
-                                PFGeoPoint *myUserGeoPoint = myUser[@"location"];
-                                PFGeoPoint *myFriendGeoPoint = myFriend[@"location"];
-                                
-                                CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:myUserGeoPoint.latitude longitude:myUserGeoPoint.longitude];
-                                CLLocation *friendsLocation = [[CLLocation alloc] initWithLatitude:myFriendGeoPoint.latitude longitude:myFriendGeoPoint.longitude];
-                                
-                                CLLocationDistance distance = [userLocation distanceFromLocation:friendsLocation];
-                                double secondsForBallToTravel = distance/(3600/500);
-                                NSNumber *timeTillArrival = [NSNumber numberWithDouble:(secondsForBallToTravel - [[NSDate date] timeIntervalSinceDate:friendActivity.createdAt])];
-                                
-                                // If friends ball has arrived, ???
-                                if (secondsForBallToTravel < [[NSDate date] timeIntervalSinceDate:friendActivity.createdAt]) {
-                                    [friendDictionary setObject:friendActivity forKey:@"activity"];
-                                    [friendDictionary setObject:@YES forKey:@"arrived"];
-                                    [friendDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
-                                    [friendsActivityArray addObject:friendDictionary];
-                                } else {
-                                    [friendDictionary setObject:friendActivity forKey:@"activity"];
-                                    [friendDictionary setObject:@NO forKey:@"arrived"];
-                                    [friendDictionary setObject:timeTillArrival forKey:@"timeTillArrival"];
-                                    [friendsActivityArray addObject:friendDictionary];
-                                }
-                                [remainingActivities removeObject:friendActivity];
-                                if ([remainingActivities count] == 0) {
-                                    
-                                    sortedFriendsActivityArray = [friendsActivityArray sortedArrayUsingComparator:^NSComparisonResult(NSMutableDictionary *a, NSMutableDictionary *b) {
-                                        NSNumber *first = a[@"timeTillArrival"];
-                                        NSNumber *second = b[@"timeTillArrival"];
-                                        
-                                        return [second compare:first];
-                                    }];
-                                    
-                                    NSLog(@"buildActivityDictionary method finished");
-                                    dispatch_group_leave(taskGroup);
-                                }
+                            } else {
+                                NSLog(@"error4");
+                                isError = YES;
+                                dispatch_group_leave(taskGroup);
                             }
-                        } else {
-                            NSLog(@"error4");
-                            isError = YES;
-                            dispatch_group_leave(taskGroup);
-                        }
-                    }];
+                        }];
+                    } else {
+                        dispatch_group_leave(taskGroup);
+                    }
                 } else {
                     NSLog(@"error3");
                     isError = YES;
@@ -388,7 +442,9 @@ float R = 300;
         for (int i = 0; i < [sortedFriendsActivityArray count]; i++) {
             NSDictionary *tempFriendsActivity = [NSDictionary new];
             tempFriendsActivity = sortedFriendsActivityArray[i];
-            if ([tempFriendsActivity[@"arrived"] isEqual: @YES]) {
+            PFObject *tempFriendActivityObject = tempFriendsActivity[@"activity"];
+            
+            if (([tempFriendsActivity[@"arrived"] isEqual: @YES]) && ([tempFriendActivityObject[@"BeingReturned"] isEqualToNumber:[NSNumber numberWithBool:false]])) {
                 [tempActivityArray addObject:sortedFriendsActivityArray[i]];
             }
         }
@@ -396,7 +452,7 @@ float R = 300;
         BOOL isTheSame = YES;
         
         if ([tempActivityArray count] == [activityArray count]) {
-            for (int i = 0; i < [activityArray count]; i++) {
+            for (int i = 1; i < [activityArray count]; i++) {
                 NSDictionary *tempActivityArrayDictionary = tempActivityArray[i];
                 NSDictionary *activityArrayDictionary = activityArray[i];
                 
@@ -411,7 +467,7 @@ float R = 300;
             isTheSame = NO;
         }
         
-        if (isTheSame == NO) {
+        if ((isTheSame == NO) || userBallStateChanged) {
             activityArray = [NSMutableArray arrayWithArray:tempActivityArray];
             
             for (int i = 0; i < [activityArray count]; i++) {
@@ -421,7 +477,7 @@ float R = 300;
             
             CGFloat width = self.view.frame.size.width * [activityArray count];
             myScrollView.contentSize = CGSizeMake(width, myScrollView.frame.size.height);
-            isViewBuilt = NO;
+            userBallStateChanged = NO;
             [self buildView];
         } else {
             NSLog(@"THE SAME!!");
@@ -435,6 +491,19 @@ float R = 300;
     if (isViewBuilt == NO) {
         [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(buildActivityDictionaryMethod) userInfo:nil repeats:YES];
         
+        [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateDeviceMotion) userInfo:nil repeats:YES];
+        
+        // TODO: 2.1
+        
+        // 2.1 Create a CMMotionManager instance and store it in the property "motionManager"
+        self.motionManager = [[CMMotionManager alloc] init];
+        
+        // 2.1 Set the motion update interval to 1/60
+        self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
+        
+        // 2.1 Start updating the motion using the reference frame CMAttitudeReferenceFrameXArbitraryCorrectedZVertical
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical];
+        
         isViewBuilt = YES;
     }
     
@@ -447,47 +516,56 @@ float R = 300;
     [self resetScrollView];
 }
 
-- (void) setupView {
-    [self.ball removeFromSuperview];
-    
-    [self initBall];
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateDeviceMotion) userInfo:nil repeats:YES];
-    
-    // TODO: 2.1
-    
-    // 2.1 Create a CMMotionManager instance and store it in the property "motionManager"
-    self.motionManager = [[CMMotionManager alloc] init];
-    
-    // 2.1 Set the motion update interval to 1/60
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
-    
-    // 2.1 Start updating the motion using the reference frame CMAttitudeReferenceFrameXArbitraryCorrectedZVertical
-    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical];
-}
-
-- (void)initBall {
-    self.ball = [[UIView alloc] initWithFrame:CGRectMake(160, 134, R, R)];
-    self.ball.layer.cornerRadius = 150;
-    if (is35) {
-        self.ball = [[UIView alloc] initWithFrame:CGRectMake(160, 113, R, R)];
-        self.ball.layer.cornerRadius = 127;
+- (void) setupBall:(int)sub {
+    for (UIView *myBall in myScrollView.subviews) {
+        if (myBall.tag > 0) {
+            [myBall removeFromSuperview];
+        }
     }
-    self.ball.backgroundColor = [UIColor redColor];
-    [self.view addSubview:self.ball];
+    
+    [self initBall:currentPage];
 }
 
-- (void)updateBallWithRoll:(float)roll Pitch:(float)pitch Yaw:(float)yaw accX:(float)accX accY:(float)accY accZ:(float)accZ {
-    // 0, 20, 114, 154
+- (void)initBall:(int)sub {
+    UIView *ball = [[UIView alloc] init];
+    ball = [[UIView alloc] initWithFrame:CGRectMake((10 + (sub * self.view.frame.size.width)), 134, R, R)];
+    ball.layer.cornerRadius = 150;
+    if (is35) {
+        ball = [[UIView alloc] initWithFrame:CGRectMake((10 + (sub * self.view.frame.size.width)), 113, R, R)];
+        ball.layer.cornerRadius = 127;
+    }
+    if (sub == 0) {
+        ball.backgroundColor = [UIColor blueColor];
+    } else {
+        ball.backgroundColor = [UIColor redColor];
+    }
+    ball.tag = sub + 1;
+    [myScrollView addSubview:ball];
+}
+
+- (void)updateBallWithRoll:(float)roll Pitch:(float)pitch Yaw:(float)yaw accX:(float)accX accY:(float)accY accZ:(float)accZ sub:(int)sub {
+    
+    if ((accY > 3) && (accZ > 3)) {
+        if (sub == 0) {
+            if ([toFBdetailsArray count] > 0) {
+                [self throwBall:sub];
+                return;
+            }
+        } else {
+            [self throwBall:sub];
+            return;
+        }
+    }
+    
     float maxYValue = 268;
-    float maxXValue = 20;
+    float maxXValue = 20 + (sub * self.view.frame.size.width);
     float minYValue = 0;
-    float minXValue = 0;
+    float minXValue = 0 + (sub * self.view.frame.size.width);
     if (is35) {
         maxYValue = 226;
-        maxXValue = 68;
+        maxXValue = 68 + (sub * self.view.frame.size.width);
         minYValue = 0;
-        minXValue = 0;
+        minXValue = 0 + (sub * self.view.frame.size.width);
     }
     
     X += 2 * roll;
@@ -497,13 +575,21 @@ float R = 300;
     X *= 0.8;
     Y *= 0.8;
     
-    CGFloat newX = self.ball.frame.origin.x + X;
-    CGFloat newY = self.ball.frame.origin.y + Y;
+    UIView *ball = [[UIView alloc] init];
+    
+    for (UIView *myBall in myScrollView.subviews) {
+        if (myBall.tag == (sub + 1)) {
+            ball = myBall;
+        }
+    }
+    
+    CGFloat newX = ball.frame.origin.x + X;
+    CGFloat newY = ball.frame.origin.y + Y;
     
     newX = fmin(maxXValue, fmax(minXValue, newX));
     newY = fmin(maxYValue, fmax(minYValue, newY));
     
-    self.ball.frame = CGRectMake(newX, newY, R, R);
+    ball.frame = CGRectMake(newX, newY, R, R);
 }
 
 -(void)updateDeviceMotion {
@@ -533,24 +619,50 @@ float R = 300;
     float accY = userAcceleration.y;
     float accZ = userAcceleration.z;
     
-    [self updateBallWithRoll:roll Pitch:pitch Yaw:yaw accX:accX accY:accY accZ:accZ];
+    [self updateBallWithRoll:roll Pitch:pitch Yaw:yaw accX:accX accY:accY accZ:accZ sub:currentPage];
     
 //    NSLog(@"accX:%.2f, accY:%.2f, accZ:%.2f", accX, accY, accZ);
 }
 
--(void) throwBall {
-    PFObject *throwBallActivity = [PFObject objectWithClassName:@"Activity"];
-    throwBallActivity[@"FromFBID"] = fBID;
-    throwBallActivity[@"ToFBID"] = [toFBdetailsArray objectAtIndex:1];
-    throwBallActivity[@"BeingReturned"] = [NSNumber numberWithBool:NO];
+-(void) throwBall:(int)sub {
+    if (sub == 0) {
+        PFObject *throwBallActivity = [PFObject objectWithClassName:@"Activity"];
+        throwBallActivity[@"FromFBID"] = fBID;
+        throwBallActivity[@"ToFBID"] = [toFBdetailsArray objectAtIndex:1];
+        throwBallActivity[@"BeingReturned"] = [NSNumber numberWithBool:NO];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"user_ball_thrown"];
+        userBallStateChanged = YES;
+        
+        [toFBdetailsArray removeObjectAtIndex:0];
+        [toFBdetailsArray removeObjectAtIndex:0];
+        
+        [throwBallActivity saveInBackground];
+        
+        [self performSegueWithIdentifier:@"AfterThrowingSegue" sender:self];
+    } else {
+        NSDictionary *tempDictionary = activityArray[sub];
+        PFObject *myActivity = tempDictionary[@"activity"];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+        [query whereKey:@"objectId" equalTo:myActivity.objectId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            PFObject *obj = [objects firstObject];
+            [obj setObject:[NSNumber numberWithBool:true] forKey:@"BeingReturned"];
+            [obj saveInBackground];
+        }];
+    }
     
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"user_ball_thrown"];
+    UIView *ball = [[UIView alloc] init];
     
-    [throwBallActivity saveInBackground];
-    [self.ball removeFromSuperview];
-    [toFBdetailsArray removeObjectAtIndex:0];
-    [toFBdetailsArray removeObjectAtIndex:0];
-    [self performSegueWithIdentifier:@"AfterThrowingSegue" sender:self];
+    for (UIView *myBall in myScrollView.subviews) {
+        if (myBall.tag == (sub + 1)) {
+            ball = myBall;
+        }
+    }
+    
+    [ball removeFromSuperview];
 }
 
 -(void) findFriends {
