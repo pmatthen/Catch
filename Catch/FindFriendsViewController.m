@@ -82,7 +82,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [currentFriendsTableView dequeueReusableCellWithIdentifier:@"CellID"];
     
-    cell.textLabel.textColor = [UIColor redColor];
+    cell.textLabel.textColor = [UIColor blueColor];
     cell.textLabel.text = [facebookFriendsNameArray objectAtIndex:indexPath.row];
     
     return cell;

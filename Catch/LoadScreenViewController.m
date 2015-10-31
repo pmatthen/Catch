@@ -21,17 +21,21 @@
 @property (nonatomic, strong) NSMutableArray *tempActivityArray;
 @property (nonatomic, strong) NSMutableArray *activityArray;
 @property (nonatomic, strong) NSNumber *refreshTime;
+@property int count;
 
 
 @end
 
 @implementation LoadScreenViewController
-@synthesize locationManager, userLocation, fBID, is35, myUser, tempActivityArray, activityArray, refreshTime;
+@synthesize locationManager, userLocation, fBID, is35, myUser, tempActivityArray, activityArray, refreshTime, loadingLabel, loadingLabel35, count;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     refreshTime = [NSNumber new];
+    count = 0;
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animateLoadingLabel) userInfo:nil repeats:YES];
     
     // Uncomment in case ball is lost
 //    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"user_ball_thrown"];
@@ -384,6 +388,51 @@
             NSLog(@"THE SAME!!");
         }
     });
+}
+
+-(void) animateLoadingLabel {
+    switch (count % 4) {
+        case 0:
+            loadingLabel.text = @"Loading";
+            [loadingLabel sizeToFit];
+            [loadingLabel setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            
+            loadingLabel35.text = @"Loading";
+            [loadingLabel35 sizeToFit];
+            [loadingLabel35 setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            break;
+        case 1:
+            loadingLabel.text = @"Loading.";
+            [loadingLabel sizeToFit];
+            [loadingLabel setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            
+            loadingLabel35.text = @"Loading.";
+            [loadingLabel35 sizeToFit];
+            [loadingLabel35 setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            break;
+        case 2:
+            loadingLabel.text = @"Loading..";
+            [loadingLabel sizeToFit];
+            [loadingLabel setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            
+            loadingLabel35.text = @"Loading..";
+            [loadingLabel35 sizeToFit];
+            [loadingLabel35 setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            break;
+        case 3:
+            loadingLabel.text = @"Loading...";
+            [loadingLabel sizeToFit];
+            [loadingLabel setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            
+            loadingLabel35.text = @"Loading...";
+            [loadingLabel35 sizeToFit];
+            [loadingLabel35 setFrame:CGRectMake(100, 267, loadingLabel.frame.size.width, loadingLabel.frame.size.height)];
+            break;
+        default:
+            break;
+    }
+    
+    count++;
 }
 
 

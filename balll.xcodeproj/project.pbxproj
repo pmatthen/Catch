@@ -18,11 +18,12 @@
 		B136926A1B202345004616F2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13692691B202345004616F2 /* CoreMotion.framework */; };
 		B13CDBD01B4E954900AE0502 /* info.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CDBCF1B4E954900AE0502 /* info.jpg */; };
 		B13CDBD31B4E959500AE0502 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13CDBD21B4E959500AE0502 /* InfoViewController.m */; };
-		B13E0F291BD9235900E45E44 /* swooshOct.wav in Resources */ = {isa = PBXBuildFile; fileRef = B13E0F281BD9235900E45E44 /* swooshOct.wav */; settings = {ASSET_TAGS = (); }; };
-		B158DBDD1BD6A73E00E16815 /* zoom3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B158DBDC1BD6A73E00E16815 /* zoom3.wav */; settings = {ASSET_TAGS = (); }; };
+		B13E0F291BD9235900E45E44 /* swooshOct.wav in Resources */ = {isa = PBXBuildFile; fileRef = B13E0F281BD9235900E45E44 /* swooshOct.wav */; };
+		B158DBDD1BD6A73E00E16815 /* zoom3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B158DBDC1BD6A73E00E16815 /* zoom3.wav */; };
 		B158DBDF1BD6A8BE00E16815 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B158DBDE1BD6A8BE00E16815 /* AVFoundation.framework */; };
-		B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */; };
 		B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */; };
+		B1777CF11BE4DE6400894F19 /* pop!.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1777CF01BE4DE6400894F19 /* pop!.wav */; };
 		B17C69F41B314A2800C204D4 /* FindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */; };
 		B19B01681B32A1DA00F5C1AD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19B01651B32A1DA00F5C1AD /* FBSDKCoreKit.framework */; };
 		B19B01691B32A1DA00F5C1AD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19B01661B32A1DA00F5C1AD /* FBSDKLoginKit.framework */; };
@@ -40,12 +41,12 @@
 		B1B3D1DA1B318E3B0098E2AD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1D91B318E3B0098E2AD /* SystemConfiguration.framework */; };
 		B1B3D1DC1B318E440098E2AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1DB1B318E440098E2AD /* libz.dylib */; };
 		B1B3D1DE1B318E4E0098E2AD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1DD1B318E4E0098E2AD /* libsqlite3.dylib */; };
-		B1B944361BD0E42800247ADB /* LoadScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B944351BD0E42800247ADB /* LoadScreenViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B1C492F41BD3BBB40096F494 /* blueball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F01BD3BBB40096F494 /* blueball1.png */; settings = {ASSET_TAGS = (); }; };
-		B1C492F51BD3BBB40096F494 /* blueballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F11BD3BBB40096F494 /* blueballSmaller.png */; settings = {ASSET_TAGS = (); }; };
-		B1C492F61BD3BBB40096F494 /* redball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F21BD3BBB40096F494 /* redball1.png */; settings = {ASSET_TAGS = (); }; };
-		B1C492F71BD3BBB40096F494 /* redballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F31BD3BBB40096F494 /* redballSmaller.png */; settings = {ASSET_TAGS = (); }; };
-		B1C492F91BD3BC350096F494 /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F81BD3BC350096F494 /* infoButton.png */; settings = {ASSET_TAGS = (); }; };
+		B1B944361BD0E42800247ADB /* LoadScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B944351BD0E42800247ADB /* LoadScreenViewController.m */; };
+		B1C492F41BD3BBB40096F494 /* blueball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F01BD3BBB40096F494 /* blueball1.png */; };
+		B1C492F51BD3BBB40096F494 /* blueballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F11BD3BBB40096F494 /* blueballSmaller.png */; };
+		B1C492F61BD3BBB40096F494 /* redball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F21BD3BBB40096F494 /* redball1.png */; };
+		B1C492F71BD3BBB40096F494 /* redballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F31BD3BBB40096F494 /* redballSmaller.png */; };
+		B1C492F91BD3BC350096F494 /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F81BD3BC350096F494 /* infoButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		B158DBDE1BD6A8BE00E16815 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 35StoryBoard.storyboard; sourceTree = "<group>"; };
 		B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1_welcomescreen.jpg; path = "../../../Desktop/spliced screens/1_welcomescreen.jpg"; sourceTree = "<group>"; };
+		B1777CF01BE4DE6400894F19 /* pop!.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "pop!.wav"; path = "../../../Desktop/spliced screens/pop!.wav"; sourceTree = "<group>"; };
 		B17C69F11B3143D800C204D4 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		B17C69F21B314A2700C204D4 /* FindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsViewController.h; sourceTree = "<group>"; };
 		B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendsViewController.m; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		B13E0F2A1BD9236400E45E44 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				B1777CF01BE4DE6400894F19 /* pop!.wav */,
 				B13E0F281BD9235900E45E44 /* swooshOct.wav */,
 				B158DBDC1BD6A73E00E16815 /* zoom3.wav */,
 			);
@@ -360,6 +363,7 @@
 				B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */,
 				B136924E1B1FF5FD004616F2 /* Images.xcassets in Resources */,
 				B1C492F61BD3BBB40096F494 /* redball1.png in Resources */,
+				B1777CF11BE4DE6400894F19 /* pop!.wav in Resources */,
 				B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,8 +515,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iOS Distribution: Vanaja Matthen";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Distribution: Vanaja Matthen";
+				CODE_SIGN_IDENTITY = "iOS Development: Vanaja Matthen (G6NY7EQCEX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Vanaja Matthen (G6NY7EQCEX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -524,7 +528,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TK.Balll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c630b940-0d97-44ac-b764-6af4397ba097";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -534,8 +538,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iOS Distribution: Vanaja Matthen";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Distribution: Vanaja Matthen";
+				CODE_SIGN_IDENTITY = "iOS Development: Vanaja Matthen (G6NY7EQCEX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Vanaja Matthen (G6NY7EQCEX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,7 +551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TK.Balll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c630b940-0d97-44ac-b764-6af4397ba097";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};

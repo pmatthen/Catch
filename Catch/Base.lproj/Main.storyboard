@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="r70-D7-lrD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="r70-D7-lrD">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Welcome Screen View Controller-->
@@ -66,7 +66,7 @@ where you throw it. (Whoever receives your ball can decide when/if to throw it b
                                 <rect key="frame" x="100" y="267" width="121" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -74,6 +74,7 @@ where you throw it. (Whoever receives your ball can decide when/if to throw it b
                     </view>
                     <navigationItem key="navigationItem" id="bbM-RZ-WJf"/>
                     <connections>
+                        <outlet property="loadingLabel" destination="grB-EI-6j2" id="PEI-6t-qH2"/>
                         <segue destination="vXZ-lx-hvc" kind="push" identifier="WelcomeScreenSegue" id="107-BW-bvn"/>
                         <segue destination="HVi-OU-2V1" kind="push" identifier="MainScreenSegue" id="ZD4-Z6-KvB"/>
                     </connections>
@@ -114,10 +115,18 @@ where you throw it. (Whoever receives your ball can decide when/if to throw it b
                                     <outlet property="delegate" destination="HVi-OU-2V1" id="M0d-A9-laZ"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FAW-nW-Tow">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yud-7H-4II">
                                 <rect key="frame" x="278" y="523" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&gt;">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FAW-nW-Tow">
+                                <rect key="frame" x="275" y="517" width="45" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -125,15 +134,19 @@ where you throw it. (Whoever receives your ball can decide when/if to throw it b
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OJd-kS-69P">
-                                <rect key="frame" x="16" y="526" width="22" height="22"/>
+                                <rect key="frame" x="0.0" y="517" width="45" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="infoButton.png">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="g0Y-bi-rZF" kind="push" id="nRz-tn-yla"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoButton.png" id="qKL-Ox-zRz">
+                                <rect key="frame" x="16" y="526" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -145,12 +158,13 @@ where you throw it. (Whoever receives your ball can decide when/if to throw it b
                         <outlet property="myViewFront" destination="mK2-GC-xko" id="F3y-HQ-27k"/>
                         <outlet property="myViewMiddle" destination="h8F-4K-7iS" id="s4H-wy-vfg"/>
                         <outlet property="rightArrowButton" destination="FAW-nW-Tow" id="4ur-OJ-OGE"/>
+                        <outlet property="rightArrowLabel" destination="yud-7H-4II" id="IbU-P9-JdJ"/>
                         <segue destination="zvC-h0-bYG" kind="push" identifier="FriendsScreenSegue" id="JEM-fM-PHJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0k-43-qgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="761.60000000000002" y="1046.0666666666666"/>
+            <point key="canvasLocation" x="761" y="1046"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="hal-is-lzA">
@@ -240,7 +254,7 @@ No.</string>
                                 <rect key="frame" x="139" y="0.0" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="BACK">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -285,6 +299,6 @@ No.</string>
         <image name="infoButton.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Vy-H0-bh4"/>
+        <segue reference="ZD4-Z6-KvB"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,4 +14,7 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+@property (strong, nonatomic) IBOutlet UILabel *loadingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *loadingLabel35;
+
 @end

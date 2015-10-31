@@ -36,7 +36,7 @@
 @end
 
 @implementation MainScreenViewController
-@synthesize fBID, toFBdetailsArray, myUser, is35, tempActivityArray, activityArray, isBuildActivityStarted, isViewBuilt, myScrollView, currentPage, previousPage, startingX, userBallStateChanged, ballETAInSeconds, cityName, friendName, myViewBack, myViewMiddle, myViewFront, rightArrowButton, canMakeParseQueries, isMessageDisplayed, myFriendsImThrowingTo, player, refreshTime, shouldAnimateIncomingBall, selectFriendButton;
+@synthesize fBID, toFBdetailsArray, myUser, is35, tempActivityArray, activityArray, isBuildActivityStarted, isViewBuilt, myScrollView, currentPage, previousPage, startingX, userBallStateChanged, ballETAInSeconds, cityName, friendName, myViewBack, myViewMiddle, myViewFront, rightArrowButton, rightArrowLabel, rightArrowLabel35, canMakeParseQueries, isMessageDisplayed, myFriendsImThrowingTo, player, refreshTime, shouldAnimateIncomingBall, selectFriendButton;
 
 float X = 0;
 float Y = 0;
@@ -161,8 +161,12 @@ float speedInMetersPerSecond = 20;
     
     if (currentPage != ([activityArray count] - 1)) {
         [rightArrowButton setHidden:NO];
+        [rightArrowLabel setHidden:NO];
+        [rightArrowLabel35 setHidden:NO];
     } else {
         [rightArrowButton setHidden:YES];
+        [rightArrowLabel setHidden:YES];
+        [rightArrowLabel35 setHidden:YES];
     }
     
     if (currentPage != previousPage) {
@@ -247,9 +251,9 @@ float speedInMetersPerSecond = 20;
                 selectFriendButton.titleLabel.numberOfLines = 0;
                 selectFriendButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 [selectFriendButton setHidden:YES];
-                float heightValue = 105;
+                float heightValue = 95;
                 if (is35) {
-                    heightValue = 89;
+                    heightValue = 80;
                 }
                 selectFriendButton.frame = CGRectMake(30, -5, 250, heightValue);
                 selectFriendButton.tag = 60000;
@@ -274,9 +278,9 @@ float speedInMetersPerSecond = 20;
         myLabel.tag = 40000;
         
         [myLabel sizeToFit];
-        float yValue = 475;
+        float yValue = 490;
         if (is35) {
-            yValue = 400;
+            yValue = 414;
         }
         myLabel.frame = CGRectMake((((self.view.frame.size.width - myLabel.frame.size.width)/2) + (sub * self.view.frame.size.width)), yValue, myLabel.frame.size.width, myLabel.frame.size.height);
         
@@ -297,6 +301,9 @@ float speedInMetersPerSecond = 20;
     
     if (subViewToAdd < [activityArray count]) {
         [self drawPages:subViewToAdd];
+        if (subViewToAdd == 0) {
+            [self performSelector:@selector(findAFriendButtonDelayedShow) withObject:nil afterDelay:2.0f];
+        }
     }
 }
 
@@ -600,8 +607,12 @@ float speedInMetersPerSecond = 20;
     
     if (currentPage != ([activityArray count] - 1)) {
         [rightArrowButton setHidden:NO];
+        [rightArrowLabel setHidden:NO];
+        [rightArrowLabel35 setHidden:NO];
     } else {
         [rightArrowButton setHidden:YES];
+        [rightArrowLabel setHidden:YES];
+        [rightArrowLabel35 setHidden:YES];
     }
     
     [self pulsateArrow];
@@ -642,6 +653,7 @@ float speedInMetersPerSecond = 20;
         CGRect frame = CGRectMake(ball.frame.origin.x, (ball.frame.origin.y + 568), ball.frame.size.width, ball.frame.size.height);
         if (shouldAnimateIncomingBall) {
             NSLog(@"Animation Start");
+            [self playAudioFiles:0];
             [UIView animateWithDuration:0.9 animations:^{
                 ball.frame = frame;
             } completion:^(BOOL finished) {
@@ -994,11 +1006,15 @@ float speedInMetersPerSecond = 20;
     [UIView animateWithDuration:0.5 animations:^{
         
         rightArrowButton.alpha = 0;
+        rightArrowLabel.alpha = 0;
+        rightArrowLabel35.alpha = 0;
     } completion:^(BOOL finished){
         
         [UIView animateWithDuration:0.5 animations:^{
             
             rightArrowButton.alpha = 1;
+            rightArrowLabel.alpha = 1;
+            rightArrowLabel35.alpha = 1;
         } completion:^(BOOL finished){
             
         }];
@@ -1025,6 +1041,10 @@ float speedInMetersPerSecond = 20;
 -(void) playAudioFiles:(int)soundNumber {
     NSString *soundFilePath = [[NSString alloc] init];
     switch (soundNumber) {
+        case 0:
+            soundFilePath = [NSString stringWithFormat:@"%@/pop!.wav",
+                             [[NSBundle mainBundle] resourcePath]];
+            break;
         case 1:
             soundFilePath = [NSString stringWithFormat:@"%@/swooshOct.wav",
                              [[NSBundle mainBundle] resourcePath]];
@@ -1048,8 +1068,12 @@ float speedInMetersPerSecond = 20;
     
     if (currentPage != ([activityArray count] - 1)) {
         [rightArrowButton setHidden:NO];
+        [rightArrowLabel setHidden:NO];
+        [rightArrowLabel35 setHidden:NO];
     } else {
         [rightArrowButton setHidden:YES];
+        [rightArrowLabel setHidden:YES];
+        [rightArrowLabel35 setHidden:YES];
     }
     
     if (currentPage != previousPage) {

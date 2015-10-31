@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIView *myViewMiddle;
 @property (strong, nonatomic) IBOutlet UIView *myViewFront;
 @property (strong, nonatomic) IBOutlet UIButton *rightArrowButton;
+@property (strong, nonatomic) IBOutlet UILabel *rightArrowLabel;
+@property (strong, nonatomic) IBOutlet UILabel *rightArrowLabel35;
 @property (nonatomic, retain) AVAudioPlayer *player;
 @property (nonatomic, strong) NSNumber *refreshTime;
 @property BOOL shouldAnimateIncomingBall;
