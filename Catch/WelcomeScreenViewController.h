@@ -16,5 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIView *initializingView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
+@property (strong, nonatomic) IBOutlet UIButton *logInButton;
+
 @end
 

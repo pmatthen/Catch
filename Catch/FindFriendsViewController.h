@@ -18,6 +18,7 @@
 
 @property(nonatomic,assign)id delegate;
 @property (strong, nonatomic) IBOutlet UITableView *currentFriendsTableView;
+@property (strong, nonatomic) IBOutlet UILabel *lookingForFriendsLabel;
 
 - (IBAction)backButtonPressed:(id)sender;
 

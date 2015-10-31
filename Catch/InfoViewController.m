@@ -22,6 +22,16 @@
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+-(void)viewDidLayoutSubviews {
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
 -(void) handleTapFrom:(UITapGestureRecognizer *)recognizer {
     [self.navigationController popViewControllerAnimated:YES];
 }

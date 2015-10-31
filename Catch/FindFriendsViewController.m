@@ -18,7 +18,7 @@
 @end
 
 @implementation FindFriendsViewController
-@synthesize currentFriendsTableView, facebookFriendsNameArray, facebookFriendsIDArray, detailsArray, delegate;
+@synthesize currentFriendsTableView, facebookFriendsNameArray, facebookFriendsIDArray, detailsArray, delegate, lookingForFriendsLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,10 +60,18 @@
             }
 
         } else {
-            NSLog(@"error = %@", error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:[NSString stringWithFormat:@"Please ensure a stable internet connection, and restart the app (%@)", error] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            NSLog(@"Error = %@", error);
         }
         
+        [currentFriendsTableView setHidden:NO];
         [currentFriendsTableView reloadData];
+        
+        if ([facebookFriendsNameArray count] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Uh oh... Looks like none of your friends have our app yet. Tell them about it or try again later!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
     }];
 }
 
@@ -74,6 +82,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [currentFriendsTableView dequeueReusableCellWithIdentifier:@"CellID"];
     
+    cell.textLabel.textColor = [UIColor redColor];
     cell.textLabel.text = [facebookFriendsNameArray objectAtIndex:indexPath.row];
     
     return cell;

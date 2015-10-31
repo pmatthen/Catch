@@ -17,7 +17,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -27,6 +26,9 @@
     [Parse setApplicationId:@"2VrzoMkzWVCPfrymMp4jEULLvV4eYFcc2OX7PpL4"
                   clientKey:@"gaF5pfokz9A4msDp2thCBCpt3urZBCK10TCce3Dd"];
     
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     UIStoryboard *storyboard = [self grabStoryboard];
     
     // show the storyboard
@@ -34,8 +36,6 @@
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
     
-    // [Optional] Track statistics around application opens.
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 }

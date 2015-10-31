@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Catch.xcodeproj">
+      location = "self:/Users/Vanaja/Documents/Catch/balll.xcodeproj">
    </FileRef>
 </Workspace>

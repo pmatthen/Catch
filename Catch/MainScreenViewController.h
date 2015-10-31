@@ -8,14 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface MainScreenViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) NSString *fBUsername;
 @property (strong, nonatomic) NSString *fBID;
 @property (strong, nonatomic) PFObject *myUser;
+@property (nonatomic, strong) NSMutableArray *activityArray;
+
+@property (strong, nonatomic) IBOutlet UIView *myViewBack;
+@property (strong, nonatomic) IBOutlet UIView *myViewMiddle;
+@property (strong, nonatomic) IBOutlet UIView *myViewFront;
+@property (strong, nonatomic) IBOutlet UIButton *rightArrowButton;
+@property (nonatomic, retain) AVAudioPlayer *player;
+@property (nonatomic, strong) NSNumber *refreshTime;
+@property BOOL shouldAnimateIncomingBall;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
+
+- (IBAction)rightArrowButtonPressed:(id)sender;
+
 
 @end

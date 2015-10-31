@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B124F6B21BAAA22A004CE7DB /* AfterThrowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */; };
 		B13692431B1FF5FD004616F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692421B1FF5FD004616F2 /* main.m */; };
 		B13692461B1FF5FD004616F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692451B1FF5FD004616F2 /* AppDelegate.m */; };
 		B13692491B1FF5FD004616F2 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13692481B1FF5FD004616F2 /* WelcomeScreenViewController.m */; };
@@ -19,6 +18,9 @@
 		B136926A1B202345004616F2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13692691B202345004616F2 /* CoreMotion.framework */; };
 		B13CDBD01B4E954900AE0502 /* info.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CDBCF1B4E954900AE0502 /* info.jpg */; };
 		B13CDBD31B4E959500AE0502 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13CDBD21B4E959500AE0502 /* InfoViewController.m */; };
+		B13E0F291BD9235900E45E44 /* swooshOct.wav in Resources */ = {isa = PBXBuildFile; fileRef = B13E0F281BD9235900E45E44 /* swooshOct.wav */; settings = {ASSET_TAGS = (); }; };
+		B158DBDD1BD6A73E00E16815 /* zoom3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B158DBDC1BD6A73E00E16815 /* zoom3.wav */; settings = {ASSET_TAGS = (); }; };
+		B158DBDF1BD6A8BE00E16815 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B158DBDE1BD6A8BE00E16815 /* AVFoundation.framework */; };
 		B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */; };
 		B17C69F41B314A2800C204D4 /* FindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */; };
@@ -38,6 +40,12 @@
 		B1B3D1DA1B318E3B0098E2AD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1D91B318E3B0098E2AD /* SystemConfiguration.framework */; };
 		B1B3D1DC1B318E440098E2AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1DB1B318E440098E2AD /* libz.dylib */; };
 		B1B3D1DE1B318E4E0098E2AD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B3D1DD1B318E4E0098E2AD /* libsqlite3.dylib */; };
+		B1B944361BD0E42800247ADB /* LoadScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B944351BD0E42800247ADB /* LoadScreenViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B1C492F41BD3BBB40096F494 /* blueball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F01BD3BBB40096F494 /* blueball1.png */; settings = {ASSET_TAGS = (); }; };
+		B1C492F51BD3BBB40096F494 /* blueballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F11BD3BBB40096F494 /* blueballSmaller.png */; settings = {ASSET_TAGS = (); }; };
+		B1C492F61BD3BBB40096F494 /* redball1.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F21BD3BBB40096F494 /* redball1.png */; settings = {ASSET_TAGS = (); }; };
+		B1C492F71BD3BBB40096F494 /* redballSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F31BD3BBB40096F494 /* redballSmaller.png */; settings = {ASSET_TAGS = (); }; };
+		B1C492F91BD3BC350096F494 /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C492F81BD3BC350096F494 /* infoButton.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B124F6B01BAAA22A004CE7DB /* AfterThrowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterThrowingViewController.h; sourceTree = "<group>"; };
-		B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterThrowingViewController.m; sourceTree = "<group>"; };
 		B136923D1B1FF5FD004616F2 /* Catch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13692411B1FF5FD004616F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B13692421B1FF5FD004616F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 		B13CDBCF1B4E954900AE0502 /* info.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = info.jpg; path = "../../../Desktop/spliced screens/info.jpg"; sourceTree = "<group>"; };
 		B13CDBD11B4E959500AE0502 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B13CDBD21B4E959500AE0502 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		B13E0F281BD9235900E45E44 /* swooshOct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = swooshOct.wav; path = "../../../Desktop/spliced screens/swooshOct.wav"; sourceTree = "<group>"; };
+		B158DBDC1BD6A73E00E16815 /* zoom3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = zoom3.wav; path = "../../../Desktop/spliced screens/zoom3.wav"; sourceTree = "<group>"; };
+		B158DBDE1BD6A8BE00E16815 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 35StoryBoard.storyboard; sourceTree = "<group>"; };
 		B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1_welcomescreen.jpg; path = "../../../Desktop/spliced screens/1_welcomescreen.jpg"; sourceTree = "<group>"; };
 		B17C69F11B3143D800C204D4 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
@@ -93,6 +102,13 @@
 		B1B3D1D91B318E3B0098E2AD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B1B3D1DB1B318E440098E2AD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B1B3D1DD1B318E4E0098E2AD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B1B944341BD0E42800247ADB /* LoadScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadScreenViewController.h; sourceTree = "<group>"; };
+		B1B944351BD0E42800247ADB /* LoadScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadScreenViewController.m; sourceTree = "<group>"; };
+		B1C492F01BD3BBB40096F494 /* blueball1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueball1.png; path = "../../../Desktop/spliced screens/blueball1.png"; sourceTree = "<group>"; };
+		B1C492F11BD3BBB40096F494 /* blueballSmaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueballSmaller.png; path = "../../../Desktop/spliced screens/blueballSmaller.png"; sourceTree = "<group>"; };
+		B1C492F21BD3BBB40096F494 /* redball1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball1.png; path = "../../../Desktop/spliced screens/redball1.png"; sourceTree = "<group>"; };
+		B1C492F31BD3BBB40096F494 /* redballSmaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redballSmaller.png; path = "../../../Desktop/spliced screens/redballSmaller.png"; sourceTree = "<group>"; };
+		B1C492F81BD3BC350096F494 /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = infoButton.png; path = "../../../Desktop/spliced screens/infoButton.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B158DBDF1BD6A8BE00E16815 /* AVFoundation.framework in Frameworks */,
 				B1B3D1DE1B318E4E0098E2AD /* libsqlite3.dylib in Frameworks */,
 				B1B3D1DC1B318E440098E2AD /* libz.dylib in Frameworks */,
 				B19B016A1B32A1DA00F5C1AD /* FBSDKShareKit.framework in Frameworks */,
@@ -155,6 +172,8 @@
 				B17C69F11B3143D800C204D4 /* AvenirLTStd-Medium.otf */,
 				B13692441B1FF5FD004616F2 /* AppDelegate.h */,
 				B13692451B1FF5FD004616F2 /* AppDelegate.m */,
+				B1B944341BD0E42800247ADB /* LoadScreenViewController.h */,
+				B1B944351BD0E42800247ADB /* LoadScreenViewController.m */,
 				B13692471B1FF5FD004616F2 /* WelcomeScreenViewController.h */,
 				B13692481B1FF5FD004616F2 /* WelcomeScreenViewController.m */,
 				B13692661B1FF7C3004616F2 /* MainScreenViewController.h */,
@@ -163,10 +182,9 @@
 				B13CDBD21B4E959500AE0502 /* InfoViewController.m */,
 				B17C69F21B314A2700C204D4 /* FindFriendsViewController.h */,
 				B17C69F31B314A2700C204D4 /* FindFriendsViewController.m */,
-				B124F6B01BAAA22A004CE7DB /* AfterThrowingViewController.h */,
-				B124F6B11BAAA22A004CE7DB /* AfterThrowingViewController.m */,
 				B136924A1B1FF5FD004616F2 /* Main.storyboard */,
 				B161AA7D1BC4D7970001D19E /* 35StoryBoard.storyboard */,
+				B13E0F2A1BD9236400E45E44 /* Sounds */,
 				B165B8E91B4671500058DB2E /* Images */,
 				B136924D1B1FF5FD004616F2 /* Images.xcassets */,
 				B136924F1B1FF5FD004616F2 /* LaunchScreen.xib */,
@@ -201,9 +219,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B13E0F2A1BD9236400E45E44 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B13E0F281BD9235900E45E44 /* swooshOct.wav */,
+				B158DBDC1BD6A73E00E16815 /* zoom3.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		B165B8E91B4671500058DB2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B1C492F81BD3BC350096F494 /* infoButton.png */,
+				B1C492F01BD3BBB40096F494 /* blueball1.png */,
+				B1C492F11BD3BBB40096F494 /* blueballSmaller.png */,
+				B1C492F21BD3BBB40096F494 /* redball1.png */,
+				B1C492F31BD3BBB40096F494 /* redballSmaller.png */,
 				B13CDBCF1B4E954900AE0502 /* info.jpg */,
 				B165B8E71B46713F0058DB2E /* 1_welcomescreen.jpg */,
 			);
@@ -213,6 +245,7 @@
 		B1B3D1C81B318DBD0098E2AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B158DBDE1BD6A8BE00E16815 /* AVFoundation.framework */,
 				B19B01651B32A1DA00F5C1AD /* FBSDKCoreKit.framework */,
 				B19B01661B32A1DA00F5C1AD /* FBSDKLoginKit.framework */,
 				B19B01671B32A1DA00F5C1AD /* FBSDKShareKit.framework */,
@@ -283,7 +316,7 @@
 				TargetAttributes = {
 					B136923C1B1FF5FD004616F2 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = VAY25AX4YH;
+						DevelopmentTeam = FAG24X2L6W;
 					};
 					B13692551B1FF5FD004616F2 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -291,7 +324,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B13692381B1FF5FD004616F2 /* Build configuration list for PBXProject "Catch" */;
+			buildConfigurationList = B13692381B1FF5FD004616F2 /* Build configuration list for PBXProject "balll" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -315,11 +348,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1C492F41BD3BBB40096F494 /* blueball1.png in Resources */,
+				B1C492F51BD3BBB40096F494 /* blueballSmaller.png in Resources */,
+				B158DBDD1BD6A73E00E16815 /* zoom3.wav in Resources */,
 				B136924C1B1FF5FD004616F2 /* Main.storyboard in Resources */,
+				B1C492F91BD3BC350096F494 /* infoButton.png in Resources */,
 				B13CDBD01B4E954900AE0502 /* info.jpg in Resources */,
+				B13E0F291BD9235900E45E44 /* swooshOct.wav in Resources */,
 				B13692511B1FF5FD004616F2 /* LaunchScreen.xib in Resources */,
+				B1C492F71BD3BBB40096F494 /* redballSmaller.png in Resources */,
 				B165B8E81B46713F0058DB2E /* 1_welcomescreen.jpg in Resources */,
 				B136924E1B1FF5FD004616F2 /* Images.xcassets in Resources */,
+				B1C492F61BD3BBB40096F494 /* redball1.png in Resources */,
 				B161AA7E1BC4D7970001D19E /* 35StoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,10 +378,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B124F6B21BAAA22A004CE7DB /* AfterThrowingViewController.m in Sources */,
 				B13692491B1FF5FD004616F2 /* WelcomeScreenViewController.m in Sources */,
 				B13692681B1FF7C3004616F2 /* MainScreenViewController.m in Sources */,
 				B13CDBD31B4E959500AE0502 /* InfoViewController.m in Sources */,
+				B1B944361BD0E42800247ADB /* LoadScreenViewController.m in Sources */,
 				B17C69F41B314A2800C204D4 /* FindFriendsViewController.m in Sources */,
 				B13692461B1FF5FD004616F2 /* AppDelegate.m in Sources */,
 				B13692431B1FF5FD004616F2 /* main.m in Sources */,
@@ -471,8 +511,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Distribution: Vanaja Matthen";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Distribution: Vanaja Matthen";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -480,12 +520,13 @@
 					/Users/Vanaja/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Catch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TK.Balll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c630b940-0d97-44ac-b764-6af4397ba097";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -493,8 +534,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Distribution: Vanaja Matthen";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Distribution: Vanaja Matthen";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -502,12 +543,13 @@
 					/Users/Vanaja/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Catch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "TK.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TK.Balll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c630b940-0d97-44ac-b764-6af4397ba097";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
@@ -550,7 +592,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B13692381B1FF5FD004616F2 /* Build configuration list for PBXProject "Catch" */ = {
+		B13692381B1FF5FD004616F2 /* Build configuration list for PBXProject "balll" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B136925E1B1FF5FD004616F2 /* Debug */,
